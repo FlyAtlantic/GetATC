@@ -11,4 +11,4 @@ Software for pilot communication with ATC in our server
 
 //  500 nm for CTR
 
-//  2000 nm for CTR
+//  2000 nm for FSS
