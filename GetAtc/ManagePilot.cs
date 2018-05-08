@@ -22,8 +22,12 @@ namespace GetAtc
             {
                 Console.WriteLine("{0} Exception caught.", crap);
 
-                FsuiipcOpen = false;
+                if (FSUIPCConnection.FlightSimVersionConnected.ToString() == "Any") {
+                    FsuiipcOpen = false;
 
+                    FSUIPCConnection.Close();
+                    FSUIPC_Connect();
+                }
             }
         }
 

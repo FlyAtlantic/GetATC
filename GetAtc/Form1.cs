@@ -20,26 +20,31 @@ namespace GetAtc
 
             InitializeComponent();
             Context = context;
-
+            
             DoStuffAsync();
+
+            notifyIcon.ShowBalloonTip(10, "Waitting for Simulator!", "Open your simulator and wait for detection.", ToolTipIcon.Warning);
 
             ManagePilot.FSUIPC_Connect();
 
+            notifyIcon.ShowBalloonTip(10, "Connected!", "Your simulator as been connected to GetATC", ToolTipIcon.Info);
+
             t = Telemetry.GetCurrent();
-
-            txtFreq.Text = t.RadioCom1.ToString("F3").Replace(",", ".");
-
-            txtUfreq.ForeColor = Color.DarkGoldenrod;
-            txtUfreq.Text = t.RadioCom1Standby.ToString("F3").Replace(",", ".");
-
+                  
             txtCallsign.ForeColor = Color.DarkRed;          
-
-            timerFrequency.Start();
 
             if (ManagePilot.FsuiipcOpen)
             {
+                timerFrequency.Start();
                 txtFsuipc.ForeColor = Color.Green;
                 txtFsuipc.Text = "FSUIPC Connected";
+                txtFreq.Text = t.RadioCom1.ToString("F3").Replace(",", ".");
+
+                txtUfreq.ForeColor = Color.DarkGoldenrod;
+                txtUfreq.Text = t.RadioCom1Standby.ToString("F3").Replace(",", ".");
+
+
+                Console.WriteLine("{0}", t.Location);
             }
             else
             {
@@ -53,8 +58,6 @@ namespace GetAtc
                 c.Show();
 
             }
-
-            Console.WriteLine("{0}", t.Location);
 
         }
 

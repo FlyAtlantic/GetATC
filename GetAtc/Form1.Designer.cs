@@ -29,10 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.lstATC = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.timerFrequency = new System.Windows.Forms.Timer(this.components);
             this.txtUfreq = new System.Windows.Forms.Label();
             this.lblUcom1 = new System.Windows.Forms.Label();
@@ -45,7 +47,7 @@
             this.btnModifyCallsign = new System.Windows.Forms.Button();
             this.timerGetATC = new System.Windows.Forms.Timer(this.components);
             this.btnUnicom = new System.Windows.Forms.Button();
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.SuspendLayout();
             // 
             // lstATC
@@ -76,6 +78,10 @@
             // columnHeader3
             // 
             this.columnHeader3.Text = "Name";
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Location";
             // 
             // timerFrequency
             // 
@@ -218,9 +224,11 @@
             this.btnUnicom.UseVisualStyleBackColor = true;
             this.btnUnicom.Click += new System.EventHandler(this.btnUnicom_Click);
             // 
-            // columnHeader4
+            // notifyIcon
             // 
-            this.columnHeader4.Text = "Location";
+            this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
+            this.notifyIcon.Text = "GetATC-Voice";
+            this.notifyIcon.Visible = true;
             // 
             // Form1
             // 
@@ -262,5 +270,6 @@
         private System.Windows.Forms.Timer timerGetATC;
         private System.Windows.Forms.Button btnUnicom;
         private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.NotifyIcon notifyIcon;
     }
 }
