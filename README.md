@@ -2,7 +2,7 @@
 Software for pilot communication with ATC in our server
 
 ////ATC Ranges Default: 
-//
+
 //  10 nm for DEL/GND 
 
 //  30 nm for TWR 
