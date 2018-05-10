@@ -12,11 +12,9 @@ namespace GetAtc
         {
             try
             {
-
                 FSUIPCConnection.Open();
 
                 FsuiipcOpen = true;
-
             }
             catch (Exception crap)
             {
@@ -63,7 +61,6 @@ namespace GetAtc
             }
             catch (Exception crap)
             {
-                // failed to connect to the sim?
                 return null;
             }
 

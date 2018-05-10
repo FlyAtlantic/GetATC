@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{BBFF31B5-7CA7-4189-B9D3-6C11D1B875F8}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>GetAtc</RootNamespace>
     <AssemblyName>GetAtc</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
@@ -41,6 +41,7 @@
     <Reference Include="FSUIPCClient">
       <HintPath>..\..\acars\Acars\FSUIPCClient.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Microsoft.Win32.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Win32.Primitives.4.3.0\lib\net46\Microsoft.Win32.Primitives.dll</HintPath>
     </Reference>
@@ -119,6 +120,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppContext.cs" />
+    <Compile Include="Atis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Atis.Designer.cs">
+      <DependentUpon>Atis.cs</DependentUpon>
+    </Compile>
     <Compile Include="CallsignFrm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -135,6 +142,15 @@
     <Compile Include="ManagePilot.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VerifyConnection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VerifyConnection.Designer.cs">
+      <DependentUpon>VerifyConnection.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Atis.resx">
+      <DependentUpon>Atis.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CallsignFrm.resx">
       <DependentUpon>CallsignFrm.cs</DependentUpon>
     </EmbeddedResource>
@@ -149,7 +165,11 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="VerifyConnection.resx">
+      <DependentUpon>VerifyConnection.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -162,7 +182,378 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\0.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\3.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\4.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\5.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\6.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\7.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\8.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\9.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\A.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ACK LPFR INFO.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ACK LPMA INFO.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ACK LPPR INFO.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ACK LPPT INFO.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AFTER DEP CONTACT 119.1.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AFTER DEP CONTACT 125.125.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AFTER DEP CONTACT 125.55.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AFTER LANDING VACATE VIA HN.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AFTER LANDING VACATE VIA HS.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AND.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ATIS OUT OF SERVICE.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\B.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BKN.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BR.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\C.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CALM.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CAVOK.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CB.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CLD.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\COMPLY WITH SPEED LIMITATIONS UNLESS OTHERWISE ADVISED BY ATC.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\D.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DEG.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DEP ATIS.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DP.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DZ.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\E.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EXP ILS APCH.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EXP ILS DME APCH.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EXP ILS Z APCH.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EXP R-NAV APCH.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EXP VOR DME APCH.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EXP XPNDR ONLY AT STARTUP.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\F.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FBL.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FEW.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FG.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FOR ATC CLEARANCE CONTACT PORTO DEL.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FOR DEP CLEARANCE CONTACT DEL 118.950.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FOR DEP CLEARANCE CONTACT GND 121.750.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FOR DEP CLEARANCE CONTACT TWR 118.100.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FREQ 118.0 CLOSED CONTACT FREQ 121.1.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FT.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\G.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GND CLOSED.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\H.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HIGH INTENSITY RWY OPS.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hundred.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\I.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\J.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\K.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\KM.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\KT.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\L.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LPFR ATIS.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LPMA ATIS.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LPPR ATIS.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LPPT ATIS.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LVP IN FORCE.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\M.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MAX.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MEDIUM AND LIGHT AIRCRAFT EXPECT POSITION U FOR DEPARTURE, IF UNABLE ADVISE BEFORE TAXI.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MOD.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MTS.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\N.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\O.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\OBSCURED.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ON THE GROUND CONTACT 125.55.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ON THE GROUND CONTACT APP 119.1.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ON THE GROUND CONTACT APP 119.4.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ON THE GROUND CONTACT APP 119.6.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\OVC.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\P.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PORTO DEL CLOSED.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PRFG.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Q.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\QNH.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\R.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RA.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RADZ.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RE.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RVR TDZ.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RWY IN USE 03.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RWY IN USE 05.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RWY IN USE 10.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RWY IN USE 17.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RWY IN USE 21.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RWY IN USE 23.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RWY IN USE 28.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RWY IN USE 35.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\S.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SCT.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SH.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SHRA.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\T.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TCU.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TEMP.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\thousand.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TL.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TS.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TSRA.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\U.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\V.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\VIS TDZ.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\VIS.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\VRB BTN.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\VRB.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\VV.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\W.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\WND.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\X.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Y.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Z.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

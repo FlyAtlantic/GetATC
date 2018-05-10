@@ -13,11 +13,9 @@ namespace GetAtc
         Telemetry t;
         List<Clients> clients = null;
         public static string Callsign;
-        CallsignFrm c = new CallsignFrm();
 
         public Form1(AppContext context)
         {
-
             InitializeComponent();
             Context = context;
             
@@ -42,21 +40,11 @@ namespace GetAtc
 
                 txtUfreq.ForeColor = Color.DarkGoldenrod;
                 txtUfreq.Text = t.RadioCom1Standby.ToString("F3").Replace(",", ".");
-
-
-                Console.WriteLine("{0}", t.Location);
             }
             else
             {
                 txtFsuipc.ForeColor = Color.Red;
                 txtFsuipc.Text = "Waitting for Sim";
-            }
-
-            if(txtCallsign.Text == "------")
-            {
-                Enabled = false;
-                c.Show();
-
             }
 
         }
@@ -69,9 +57,7 @@ namespace GetAtc
                 Telemetry.ManualUnicom();
                 System.Diagnostics.Process.Start(@"teamspeak://snet.flyatlantic-va.com:8767/nickname=" + Callsign + "?login=anonimous?channel=unicom");
             }
-
             Callsign = callsign;
-
         }
 
         public async void DoStuffAsync()
@@ -91,22 +77,20 @@ namespace GetAtc
                     string[] split = item.callsign.ToString().Split('_');
 
                     foreach (string word in split)
-                    {
+                    {                       
                         switch (word)
                         {
                             case "FSS":
                                 if (Convert.ToInt32(distance) < 2000)
                                 {
-
-                                    lstATC.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-                                    lstATC.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
                                     lstATC.Items.Add(new ListViewItem(new string[]{
                                     item.callsign.ToString(),
                                     item.frequency.ToString(),
                                     item.realname.ToString(),
                                     distance + " NM"
                                      }));
-
+                                    lstATC.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+                                    lstATC.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
 
                                 }
                                 else
@@ -119,14 +103,14 @@ namespace GetAtc
                                 if (Convert.ToInt32(distance) < 500)
                                 {
 
-                                    lstATC.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-                                    lstATC.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
                                     lstATC.Items.Add(new ListViewItem(new string[]{
                                     item.callsign.ToString(),
                                     item.frequency.ToString(),
                                     item.realname.ToString(),
                                     distance + " NM"
                                      }));
+                                    lstATC.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+                                    lstATC.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
 
 
                                 }
@@ -139,16 +123,15 @@ namespace GetAtc
                             case "APP":
                                 if (Convert.ToInt32(distance) < 100)
                                 {
-
-                                    lstATC.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-                                    lstATC.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+                                   
                                     lstATC.Items.Add(new ListViewItem(new string[]{
                                     item.callsign.ToString(),
                                     item.frequency.ToString(),
                                     item.realname.ToString(),
                                     distance + " NM"
                                      }));
-
+                                    lstATC.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+                                    lstATC.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
 
                                 }
                                 else
@@ -161,15 +144,14 @@ namespace GetAtc
                                 if (Convert.ToInt32(distance) < 100)
                                 {
 
-                                    lstATC.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-                                    lstATC.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
                                     lstATC.Items.Add(new ListViewItem(new string[]{
                                     item.callsign.ToString(),
                                     item.frequency.ToString(),
                                     item.realname.ToString(),
                                     distance + " NM"
                                      }));
-
+                                    lstATC.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+                                    lstATC.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
 
                                 }
                                 else
@@ -182,15 +164,14 @@ namespace GetAtc
                                 if (Convert.ToInt32(distance) < 30)
                                 {
 
-                                    lstATC.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-                                    lstATC.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
                                     lstATC.Items.Add(new ListViewItem(new string[]{
                                     item.callsign.ToString(),
                                     item.frequency.ToString(),
                                     item.realname.ToString(),
                                     distance + " NM"
                                      }));
-
+                                    lstATC.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+                                    lstATC.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
 
                                 }
                                 else
@@ -203,15 +184,14 @@ namespace GetAtc
                                 if (Convert.ToInt32(distance) < 10)
                                 {
 
-                                    lstATC.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-                                    lstATC.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
                                     lstATC.Items.Add(new ListViewItem(new string[]{
                                     item.callsign.ToString(),
                                     item.frequency.ToString(),
                                     item.realname.ToString(),
                                     distance + " NM"
                                      }));
-
+                                    lstATC.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+                                    lstATC.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
 
                                 }
                                 else
@@ -224,15 +204,14 @@ namespace GetAtc
                                 if (Convert.ToInt32(distance) < 10)
                                 {
 
-                                    lstATC.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-                                    lstATC.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
                                     lstATC.Items.Add(new ListViewItem(new string[]{
                                     item.callsign.ToString(),
                                     item.frequency.ToString(),
                                     item.realname.ToString(),
                                     distance + " NM"
                                      }));
-
+                                    lstATC.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+                                    lstATC.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
 
                                 }
                                 else
@@ -245,9 +224,7 @@ namespace GetAtc
                                 break;
                         }                      
                     }
-                }
-
-                
+                }                
             }         
             timerGetATC.Start();
         }
@@ -264,17 +241,7 @@ namespace GetAtc
             t = Telemetry.GetCurrent();
             txtFreq.Text = t.RadioCom1.ToString("F3").Replace(",", ".");
             txtUfreq.Text = t.RadioCom1Standby.ToString("F3").Replace(",", ".");
-            txtCallsign.Text = Callsign;
-
-            if (c.Visible == false)
-            {
-                Enabled = true;
-
-                if (txtCallsign.Text != "------")
-                {
-                    btnModifyCallsign.Visible = true;
-                }
-            }           
+            txtCallsign.Text = Callsign;        
         }
         
         private void txtFreq_TextChanged(object sender, EventArgs e)
@@ -300,12 +267,6 @@ namespace GetAtc
                     }
                 }
             }
-        }
-
-        private void btnModifyCallsign_Click(object sender, EventArgs e)
-        {
-            Enabled = false;
-            c.Show();
         }
 
         private void timerGetATC_Tick(object sender, EventArgs e)

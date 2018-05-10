@@ -7,12 +7,10 @@ using System.Device.Location;
 
 namespace GetAtc
 {
-
-        public class Infos
+    public class Infos
     {
         public static string Callsign
         { get; set; }            
-
     }
 
     public class GetXMLInfos

@@ -14,8 +14,6 @@ namespace GetAtc
         public AppContext()
         {
             form1 = new Form1(this);
-            form1.Show();
         }
-
     }
 }

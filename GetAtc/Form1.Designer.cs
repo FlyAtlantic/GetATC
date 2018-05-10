@@ -44,7 +44,6 @@
             this.lblFreq = new System.Windows.Forms.Label();
             this.txtCallsign = new System.Windows.Forms.Label();
             this.lblCallsign = new System.Windows.Forms.Label();
-            this.btnModifyCallsign = new System.Windows.Forms.Button();
             this.timerGetATC = new System.Windows.Forms.Timer(this.components);
             this.btnUnicom = new System.Windows.Forms.Button();
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
@@ -196,17 +195,6 @@
             this.lblCallsign.Text = "Callsign";
             this.lblCallsign.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // btnModifyCallsign
-            // 
-            this.btnModifyCallsign.Location = new System.Drawing.Point(327, 216);
-            this.btnModifyCallsign.Name = "btnModifyCallsign";
-            this.btnModifyCallsign.Size = new System.Drawing.Size(75, 23);
-            this.btnModifyCallsign.TabIndex = 27;
-            this.btnModifyCallsign.Text = "Edit Callsign";
-            this.btnModifyCallsign.UseVisualStyleBackColor = true;
-            this.btnModifyCallsign.Visible = false;
-            this.btnModifyCallsign.Click += new System.EventHandler(this.btnModifyCallsign_Click);
-            // 
             // timerGetATC
             // 
             this.timerGetATC.Interval = 60000;
@@ -236,7 +224,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(451, 287);
             this.Controls.Add(this.btnUnicom);
-            this.Controls.Add(this.btnModifyCallsign);
             this.Controls.Add(this.txtCallsign);
             this.Controls.Add(this.lblCallsign);
             this.Controls.Add(this.txtUfreq);
@@ -266,7 +253,6 @@
         private System.Windows.Forms.Label lblFreq;
         private System.Windows.Forms.Label lblCallsign;
         public System.Windows.Forms.Label txtCallsign;
-        private System.Windows.Forms.Button btnModifyCallsign;
         private System.Windows.Forms.Timer timerGetATC;
         private System.Windows.Forms.Button btnUnicom;
         private System.Windows.Forms.ColumnHeader columnHeader4;

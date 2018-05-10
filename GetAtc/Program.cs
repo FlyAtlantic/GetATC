@@ -13,7 +13,7 @@ namespace GetAtc
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new AppContext());
+            Application.Run(new VerifyConnection());           
         }
         
     }
