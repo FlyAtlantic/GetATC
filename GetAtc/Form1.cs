@@ -55,7 +55,7 @@ namespace GetAtc
             {
                 Callsign = callsign;                
                 Telemetry.ManualUnicom();
-                System.Diagnostics.Process.Start(@"teamspeak://snet.flyatlantic-va.com:8767/nickname=" + Callsign + "?login=anonimous?channel=unicom");
+                System.Diagnostics.Process.Start(@"teamspeak://voice1.flyatlantic-va.com:8767/nickname=" + Callsign + "?login=anonimous?channel=unicom");
             }
             Callsign = callsign;
         }
@@ -257,11 +257,11 @@ namespace GetAtc
                         {
                             if (result)
                             {
-                                System.Diagnostics.Process.Start(@"teamspeak://snet.flyatlantic-va.com:8767/nickname=" + Callsign + "?login=anonimous?channel=" + item.callsign.ToString() + "");
+                                System.Diagnostics.Process.Start(@"teamspeak://voice1.flyatlantic-va.com:8767/nickname=" + Callsign + "?login=anonimous?channel=" + item.callsign.ToString() + "");
                             }
                             if (txtFreq.Text == "122.800")
                             {
-                                System.Diagnostics.Process.Start(@"teamspeak://snet.flyatlantic-va.com:8767/nickname=" + Callsign + "?login=anonimous?channel=unicom");                                
+                                System.Diagnostics.Process.Start(@"teamspeak://voice1.flyatlantic-va.com:8767/nickname=" + Callsign + "?login=anonimous?channel=unicom");                                
                             }
                         }
                     }
@@ -276,7 +276,7 @@ namespace GetAtc
 
         private void btnUnicom_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start(@"teamspeak://snet.flyatlantic-va.com:8767/nickname=" + Callsign + "?login=anonimous?channel=unicom");
+            System.Diagnostics.Process.Start(@"teamspeak://voice1.flyatlantic-va.com:8767/nickname=" + Callsign + "?login=anonimous?channel=unicom");
             Telemetry.ManualUnicom();
         }
     }
