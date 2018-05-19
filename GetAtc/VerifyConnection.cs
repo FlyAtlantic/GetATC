@@ -22,7 +22,8 @@ namespace GetAtc
         { get; set; }
 
         List<Clients> clients = null;
-        
+        List<Clients> clients1 = null;
+
         public VerifyConnection()
         {
             InitializeComponent();
@@ -80,22 +81,22 @@ namespace GetAtc
             txtCID.Enabled = false;
 
             btnConnect.Enabled = false;
-
+          
             clients = await FaStatusServer.GetAsync<Clients>("clients", false, "{\"clienttype\":\"PILOT\"}");
 
             if (clients.Count > 0)
             {
-                foreach (var item in clients)
-                {
-                    if (item.CID.ToString() == txtCID.Text)
-                    {
-                        LoggedIn = true;
 
-                        Callsign = item.callsign;
-                    }
-                    else
+                if (clients.Count > 0)
+                {
+                    foreach (var item in clients)
                     {
-                        LoggedIn = false;
+                        if (item.CID.ToString() == txtCID.Text)
+                        {
+                            LoggedIn = true;
+
+                            Callsign = item.callsign;
+                        }
                     }
                 }
             }
