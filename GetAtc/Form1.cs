@@ -62,171 +62,181 @@ namespace GetAtc
 
         public async void DoStuffAsync()
         {
-            timerGetATC.Stop();
-
-            clients = await Context.FaStatusServer.GetAsync<Clients>("clients", false, "{\"clienttype\":\"ATC\"}");
-
-            lstATC.Items.Clear();
-            if (clients.Count > 0)
+            try
             {
-                foreach (var item in clients)
+                timerGetATC.Stop();
+
+                clients = await Context.FaStatusServer.GetAsync<Clients>("clients", false, "{\"clienttype\":\"ATC\"}");
+            }
+            catch (Exception)
+            {
+                DoStuffAsync();
+            }
+            finally
+            {
+
+                lstATC.Items.Clear();
+                if (clients.Count > 0)
                 {
-                    GeoCoordinate Location2 = new GeoCoordinate(Convert.ToDouble(item.location[1].Replace(".", ",")), Convert.ToDouble(item.location[0].Replace(".", ",")));
-                    string distance = (Convert.ToInt32(t.Location.GetDistanceTo(Location2)) * 0.000539956803).ToString("F0");
+                    foreach (var item in clients)
+                    {
+                        GeoCoordinate Location2 = new GeoCoordinate(Convert.ToDouble(item.location[1].Replace(".", ",")), Convert.ToDouble(item.location[0].Replace(".", ",")));
+                        string distance = (Convert.ToInt32(t.Location.GetDistanceTo(Location2)) * 0.000539956803).ToString("F0");
 
-                    string[] split = item.callsign.ToString().Split('_');
+                        string[] split = item.callsign.ToString().Split('_');
 
-                    foreach (string word in split)
-                    {                       
-                        switch (word)
+                        foreach (string word in split)
                         {
-                            case "FSS":
-                                if (Convert.ToInt32(distance) < 2000)
-                                {
-                                    lstATC.Items.Add(new ListViewItem(new string[]{
-                                    item.callsign.ToString(),
-                                    item.frequency.ToString(),
-                                    item.realname.ToString(),
-                                    distance + " NM"
-                                     }));
-                                    lstATC.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-                                    lstATC.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+                            switch (word)
+                            {
+                                case "FSS":
+                                    if (Convert.ToInt32(distance) < 2000)
+                                    {
+                                        lstATC.Items.Add(new ListViewItem(new string[]{
+                                        item.callsign.ToString(),
+                                        item.frequency.ToString(),
+                                        item.realname.ToString(),
+                                        distance + " NM"
+                                         }));
+                                        lstATC.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+                                        lstATC.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
 
-                                }
-                                else
-                                {
-                                    Console.WriteLine("FSS // Nothing on your Range");
-                                }
-                                break;
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("FSS // Nothing on your Range");
+                                    }
+                                    break;
 
-                            case "CTR":
-                                if (Convert.ToInt32(distance) < 500)
-                                {
+                                case "CTR":
+                                    if (Convert.ToInt32(distance) < 500)
+                                    {
 
-                                    lstATC.Items.Add(new ListViewItem(new string[]{
-                                    item.callsign.ToString(),
-                                    item.frequency.ToString(),
-                                    item.realname.ToString(),
-                                    distance + " NM"
-                                     }));
-                                    lstATC.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-                                    lstATC.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+                                        lstATC.Items.Add(new ListViewItem(new string[]{
+                                        item.callsign.ToString(),
+                                        item.frequency.ToString(),
+                                        item.realname.ToString(),
+                                        distance + " NM"
+                                         }));
+                                        lstATC.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+                                        lstATC.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
 
 
-                                }
-                                else
-                                {
-                                    Console.WriteLine("CTR // Nothing on your Range");
-                                }
-                                break;
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("CTR // Nothing on your Range");
+                                    }
+                                    break;
 
-                            case "APP":
-                                if (Convert.ToInt32(distance) < 100)
-                                {
-                                   
-                                    lstATC.Items.Add(new ListViewItem(new string[]{
-                                    item.callsign.ToString(),
-                                    item.frequency.ToString(),
-                                    item.realname.ToString(),
-                                    distance + " NM"
-                                     }));
-                                    lstATC.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-                                    lstATC.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+                                case "APP":
+                                    if (Convert.ToInt32(distance) < 100)
+                                    {
 
-                                }
-                                else
-                                {
-                                    Console.WriteLine("APP // Nothing on your Range");
-                                }
-                                break;
+                                        lstATC.Items.Add(new ListViewItem(new string[]{
+                                        item.callsign.ToString(),
+                                        item.frequency.ToString(),
+                                        item.realname.ToString(),
+                                        distance + " NM"
+                                         }));
+                                        lstATC.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+                                        lstATC.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
 
-                            case "DEP":
-                                if (Convert.ToInt32(distance) < 100)
-                                {
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("APP // Nothing on your Range");
+                                    }
+                                    break;
 
-                                    lstATC.Items.Add(new ListViewItem(new string[]{
-                                    item.callsign.ToString(),
-                                    item.frequency.ToString(),
-                                    item.realname.ToString(),
-                                    distance + " NM"
-                                     }));
-                                    lstATC.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-                                    lstATC.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+                                case "DEP":
+                                    if (Convert.ToInt32(distance) < 100)
+                                    {
 
-                                }
-                                else
-                                {
-                                    Console.WriteLine("DEP // Nothing on your Range");
-                                }
-                                break;
+                                        lstATC.Items.Add(new ListViewItem(new string[]{
+                                        item.callsign.ToString(),
+                                        item.frequency.ToString(),
+                                        item.realname.ToString(),
+                                        distance + " NM"
+                                         }));
+                                        lstATC.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+                                        lstATC.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
 
-                            case "TWR":
-                                if (Convert.ToInt32(distance) < 30)
-                                {
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("DEP // Nothing on your Range");
+                                    }
+                                    break;
 
-                                    lstATC.Items.Add(new ListViewItem(new string[]{
-                                    item.callsign.ToString(),
-                                    item.frequency.ToString(),
-                                    item.realname.ToString(),
-                                    distance + " NM"
-                                     }));
-                                    lstATC.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-                                    lstATC.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+                                case "TWR":
+                                    if (Convert.ToInt32(distance) < 30)
+                                    {
 
-                                }
-                                else
-                                {
-                                    Console.WriteLine("TWR // Nothing on your Range");
-                                }
-                                break;
+                                        lstATC.Items.Add(new ListViewItem(new string[]{
+                                        item.callsign.ToString(),
+                                        item.frequency.ToString(),
+                                        item.realname.ToString(),
+                                        distance + " NM"
+                                         }));
+                                        lstATC.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+                                        lstATC.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
 
-                            case "GND":
-                                if (Convert.ToInt32(distance) < 10)
-                                {
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("TWR // Nothing on your Range");
+                                    }
+                                    break;
 
-                                    lstATC.Items.Add(new ListViewItem(new string[]{
-                                    item.callsign.ToString(),
-                                    item.frequency.ToString(),
-                                    item.realname.ToString(),
-                                    distance + " NM"
-                                     }));
-                                    lstATC.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-                                    lstATC.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+                                case "GND":
+                                    if (Convert.ToInt32(distance) < 10)
+                                    {
 
-                                }
-                                else
-                                {
-                                    Console.WriteLine("GND // Nothing on your Range");
-                                }
-                                break;
+                                        lstATC.Items.Add(new ListViewItem(new string[]{
+                                        item.callsign.ToString(),
+                                        item.frequency.ToString(),
+                                        item.realname.ToString(),
+                                        distance + " NM"
+                                         }));
+                                        lstATC.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+                                        lstATC.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
 
-                            case "DEL":
-                                if (Convert.ToInt32(distance) < 10)
-                                {
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("GND // Nothing on your Range");
+                                    }
+                                    break;
 
-                                    lstATC.Items.Add(new ListViewItem(new string[]{
-                                    item.callsign.ToString(),
-                                    item.frequency.ToString(),
-                                    item.realname.ToString(),
-                                    distance + " NM"
-                                     }));
-                                    lstATC.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-                                    lstATC.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+                                case "DEL":
+                                    if (Convert.ToInt32(distance) < 10)
+                                    {
 
-                                }
-                                else
-                                {
-                                    Console.WriteLine("DEL // Nothing on your Range");
-                                }
-                                break;
+                                        lstATC.Items.Add(new ListViewItem(new string[]{
+                                        item.callsign.ToString(),
+                                        item.frequency.ToString(),
+                                        item.realname.ToString(),
+                                        distance + " NM"
+                                         }));
+                                        lstATC.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+                                        lstATC.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
 
-                            default:
-                                break;
-                        }                      
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("DEL // Nothing on your Range");
+                                    }
+                                    break;
+
+                                default:
+                                    break;
+                            }
+                        }
                     }
-                }                
-            }         
-            timerGetATC.Start();
+                }
+                timerGetATC.Start();
+            }
         }
 
         private void lstATC_SelectedIndexChanged(object sender, EventArgs e)
